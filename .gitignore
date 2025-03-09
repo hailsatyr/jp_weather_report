@@ -1,0 +1,5 @@
+/.venv
+/daily_weather.py
+/hourly.html
+/source.html
+/__pycache__
