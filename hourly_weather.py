@@ -77,8 +77,8 @@ def form_qstring(prec_no: int, block_no: int, year: int, month: int, day: int):
     }
     return qstring
 
-def process(qstring):
-    filename = f'hourly_temps_{qstring["prec_no"]}_{qstring["year"]}_{qstring["month"]}_{qstring["day"]}.xlsx'
+def process(qstring, prefname: str):
+    filename = f'{prefname.lower().rstrip("prefecture").strip().replace(" ", "_")}_{qstring["year"]}_{qstring["month"]}_{qstring["day"]}.xlsx'
     if os.path.exists(f"./reports/{filename}"):
         print("Report for this date and prefecture already exists!")
         print(f"./reports/{filename}")
@@ -131,8 +131,9 @@ def process(qstring):
 
 global PREFS
 PREFS = get_prefs()
-selected_pref = get_user_pref()
-selected_date = get_user_date()
-qstring = form_qstring(selected_pref[1], selected_pref[2], selected_date.year, selected_date.month, selected_date.day)
-#print("Query string: ", qstring)
-process(qstring)
+if __name__ == '__main__':
+    selected_pref = get_user_pref()
+    selected_date = get_user_date()
+    qstring = form_qstring(selected_pref[1], selected_pref[2], selected_date.year, selected_date.month, selected_date.day)
+    #print("Query string: ", qstring)
+    process(qstring, selected_pref[0])

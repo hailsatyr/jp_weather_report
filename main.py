@@ -1,5 +1,5 @@
 import streamlit as st
-from hourly_weather_api import *
+from hourly_weather import *
 import os
 
 MAJ_VERSION = 1
@@ -29,7 +29,7 @@ qstring = {
 
 # Fetch data when button is clicked
 if st.button("Fetch Weather Data"):
-    filename = f"hourly_temps_{qstring['prec_no']}_{qstring['year']}_{qstring['month']}_{qstring['day']}.xlsx"
+    filename = f'{pref_data[0].lower().rstrip("prefecture").strip().replace(" ", "_")}_{qstring["year"]}_{qstring["month"]}_{qstring["day"]}.xlsx'
     filepath = f"./reports/{filename}"
     if os.path.exists(filepath):
         st.write("Excel file for this prefecture and date has already been downloaded by someone before.")
