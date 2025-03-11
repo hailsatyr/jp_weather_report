@@ -29,7 +29,7 @@ qstring = {
 
 # Fetch data when button is clicked
 if st.button("Fetch Weather Data"):
-    filename = f'{pref_data[0].lower().rstrip("prefecture").strip().replace(" ", "_")}_{qstring["year"]}_{qstring["month"]}_{qstring["day"]}.xlsx'
+    filename = f'{pref_data[0].lower().rstrip("prefecture").strip().replace(" ", "_")}_{qstring["year"]}-{qstring["month"]}-{qstring["day"]}.xlsx'
     filepath = f"./reports/{filename}"
     if os.path.exists(filepath):
         st.write("Excel file for this prefecture and date has already been downloaded by someone before.")
